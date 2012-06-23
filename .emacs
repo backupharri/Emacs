@@ -145,7 +145,7 @@
 load-path))
 
 ;use only for emacs24
-(load-theme 'tsdh-dark)
+;(load-theme 'tsdh-dark)
 
 ;;Open Recent File History
 (recentf-mode 1)

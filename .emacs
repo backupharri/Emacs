@@ -81,6 +81,10 @@
 ;;mac also use this mapping
 (define-key global-map (kbd "C-,") 'set-mark-command)
 
+;;highlight the current line
+(require 'hl-line)
+(global-hl-line-mode t)
+
 ;;set transparent and use f4 to control it
 (global-set-key [(f4)] 'loop-alpha) 
 (setq alpha-list '((100 100) (95 65) (70 55)))
@@ -107,13 +111,21 @@
 
    ((eq system-type 'windows-nt) 
     (set-face-attribute
-      'default nil :font "Consolas 11")
+      'default nil :font "Consolas 10")
     ;; Chinese Font
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset
                           (font-spec :family "SimSun" :size 16)))))
     
+;;UTF-8 Setting
+(setq current-language-environment "UTF-8")
+(setq default-input-method "chinese-py")
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
 
 ;;=====Advanced part, need additional plugins=======;;
 ;;
@@ -121,7 +133,7 @@
   ((eq system-type 'darwin)
     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
   ((eq system-type 'windows-nt)
-    (defconst my-emacs-path "c:/Editor/Emacs/")
+    (defconst my-emacs-path "d:/Editor/Emacs/")
     (setenv "HOME" my-emacs-path)))
 
 ;; change the home folder
@@ -133,7 +145,7 @@
 load-path))
 
 ;use only for emacs24
-(load-theme 'tango-dark)
+(load-theme 'tsdh-dark)
 
 ;;Open Recent File History
 (recentf-mode 1)

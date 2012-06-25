@@ -82,8 +82,8 @@
 (define-key global-map (kbd "C-,") 'set-mark-command)
 
 ;;highlight the current line
-(require 'hl-line)
-(global-hl-line-mode t)
+;(require 'hl-line)
+;(global-hl-line-mode t)
 
 ;;set transparent and use f4 to control it
 (global-set-key [(f4)] 'loop-alpha) 
@@ -146,7 +146,8 @@ load-path))
 
 ;use only for emacs24
 ;(load-theme 'tsdh-dark)
-
+(load-theme 'tango-dark)
+ 
 ;;Open Recent File History
 (recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)

@@ -111,12 +111,14 @@
 
    ((eq system-type 'windows-nt) 
     (set-face-attribute
-      'default nil :font "Consolas 10")
+      ;; 'default nil :font "Consolas 9")
+      ;; 'default nil :font "Courier New 10")
+      'default nil :font "Inconsolata 10")
     ;; Chinese Font
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset
-                          (font-spec :family "SimSun" :size 16)))))
+                          (font-spec :family "SimSun" :size 14)))))
     
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")

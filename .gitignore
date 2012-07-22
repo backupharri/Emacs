@@ -2,3 +2,7 @@
 Emacs/.gitconfig
 Emacs/.history
 Emacs/.recentf
+.emacs-places
+.recentf
+*~
+*.swp

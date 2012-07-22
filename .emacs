@@ -151,16 +151,15 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ((eq system-type 'darwin)
     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
   ((eq system-type 'windows-nt)
-    (defconst my-emacs-path "d:/Editor/Emacs/")
+    (defconst my-emacs-path "d:/github/Emacs/")
     (setenv "HOME" my-emacs-path)))
 
-;; change the home folder
-(defconst my-emacs-lisps-path (concat my-emacs-path "mylisps/"))
-
-;(setq load-path(cons(expand-file-name "c:/github/Editor/Emacs/mylisps")
-;load-path))
-(setq load-path(cons(expand-file-name my-emacs-lisps-path)
-load-path))
+;;packages server:marmalade
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;use only for emacs24
 ;(load-theme 'tsdh-dark)

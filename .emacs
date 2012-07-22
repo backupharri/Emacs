@@ -74,6 +74,7 @@
 ;; if you have to use Ctrl+U, you have to use ESC instead 
 (global-set-key (kbd "C-u") 'backward-kill-line) 
 
+
 ;;ctrl space is for sogou input method
 (global-set-key [(control space)] nil)
 (global-set-key [(control \,)] 'set-mark-command)
@@ -81,9 +82,17 @@
 ;;mac also use this mapping
 (define-key global-map (kbd "C-,") 'set-mark-command)
 
-;;highlight the current line
-;(require 'hl-line)
-;(global-hl-line-mode t)
+;; Alt+; as comment advanced;
+(defun qiang-comment-dwim-line (&optional arg)
+  "Replacement for the comment-dwim command.
+If no region is selected and current line is not blank and we are not at the end of the line,
+then comment current line.
+Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-dwim arg)))(global-set-key "\M-;" 'qiang-comment-dwim-line)
 
 ;;set transparent and use f4 to control it
 (global-set-key [(f4)] 'loop-alpha) 
@@ -111,9 +120,9 @@
 
    ((eq system-type 'windows-nt) 
     (set-face-attribute
-      ;; 'default nil :font "Consolas 9")
+      'default nil :font "Consolas 10")
       ;; 'default nil :font "Courier New 10")
-      'default nil :font "Inconsolata 10")
+      ;; 'default nil :font "Inconsolata 10") 
     ;; Chinese Font
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
@@ -137,7 +146,7 @@
 (package-initialize)
 
 ;;=====Advanced part, need additional plugins=======;;
-;;
+
 (cond
   ((eq system-type 'darwin)
     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
@@ -175,3 +184,9 @@ load-path))
     )
     (run-with-idle-timer 1 nil 'my-max-window)))
 
+
+;;=====Unused setting previously set, may also useful in future=======;;
+
+;;highlight the current line
+;(require 'hl-line)
+;(global-hl-line-mode t)

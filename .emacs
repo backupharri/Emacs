@@ -118,11 +118,21 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     ;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
     (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
 
-   ((eq system-type 'windows-nt) 
-    (set-face-attribute
-      'default nil :font "Consolas 10")
-      ;; 'default nil :font "Courier New 10")
-      ;; 'default nil :font "Inconsolata 10") 
+   ((eq system-type 'windows-nt)
+    ;;Notebook
+    (if (string-match(system-name) "hfeng-T60p")    
+	(set-face-attribute
+	 ;; 'default nil :font "Consolas 10")
+	 ;; 'default nil :font "Courier New 10")
+	 ;; 'default nil :font "Inconsolata 10")
+	 'default nil :font "Courier10 BT 11"))
+    ;;Office
+    (if (string-match(system-name) "sh-rd-hfeng")
+	(set-face-attribute
+	 ;; 'default nil :font "Consolas 10")
+	 ;; 'default nil :font "Courier New 10")
+	 ;; 'default nil :font "Inconsolata 10")
+	 'default nil :font "Courier10 BT 10"))
     ;; Chinese Font
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)

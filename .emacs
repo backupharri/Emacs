@@ -161,7 +161,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ((eq system-type 'darwin)
     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
   ((eq system-type 'windows-nt)
-    (defconst my-emacs-path "d:/github/Emacs/")
+    (if (string-match(system-name) "hfeng-T60p")    
+	(defconst my-emacs-path "c:/github/Emacs/"))
+    (if (string-match(system-name) "sh-rd-hfeng")
+	(defconst my-emacs-path "d:/github/Emacs/"))
     (setenv "HOME" my-emacs-path)))
 
 ;;packages server:marmalade
@@ -192,7 +195,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
     )
     (run-with-idle-timer 1 nil 'my-max-window)))
-
+;;python-mode
+(require 'python-mode)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
 ;;=====Unused setting previously set, may also useful in future=======;;
 

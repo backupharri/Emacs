@@ -471,7 +471,8 @@ variable section, e.g.:
   :group 'python
   :tag "Pychecker Command")
 
-(defcustom py-pychecker-command-args '("--stdlib")
+(defcustom py-pychecker-command-args '("")
+;(defcustom py-pychecker-command-args '("--stdlib")
   "*List of string arguments to be passed to pychecker."
   :type '(repeat string)
   :group 'python

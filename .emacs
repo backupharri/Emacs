@@ -82,6 +82,15 @@
 ;;mac also use this mapping
 (define-key global-map (kbd "C-,") 'set-mark-command)
 
+;;eshell
+(defun eshell/cls ()
+"Clears the shell buffer ala Unix's clear or DOS' cls"
+(interactive)
+;; the shell prompts are read-only, so clear that for the duration
+(let ((inhibit-read-only t))
+;; simply delete the region
+(delete-region (point-min) (point-max))))
+
 ;; Alt+; as comment advanced;
 (defun qiang-comment-dwim-line (&optional arg)
   "Replacement for the comment-dwim command.
@@ -204,3 +213,4 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;highlight the current line
 ;(require 'hl-line)
 ;(global-hl-line-mode t)
+

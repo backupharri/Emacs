@@ -1,0 +1,4 @@
+python -i
+ls | sort
+pip search pip
+pip search pep8

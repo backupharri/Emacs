@@ -176,6 +176,29 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	(defconst my-emacs-path "d:/github/Emacs/"))
     (setenv "HOME" my-emacs-path)))
 
+(when (string-equal system-type "windows-nt")
+
+  (defconst my-emacs-unix-command 
+    (concat
+     my-emacs-path
+     "unixTool"))
+
+  (defconst my-emacs-unix-util 
+    (concat
+     my-emacs-path
+     "unixTool/UnxUtils/usr/local/wbin"))
+
+  ;; example of setting env var named “path”,
+  ;; by appending a new path to existing path
+  (setenv "PATH"
+	  (concat
+	   my-emacs-unix-command ";"
+	   my-emacs-unix-util ";"
+       "c:/Python26/Scripts" ";"
+	   (getenv "PATH")
+	   ))
+  )
+
 ;;packages server:marmalade
 (require 'package)
 (add-to-list 'package-archives 
@@ -221,6 +244,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
              '("\\.py\\'" flymake-pyflakes-init)))
 (load-library "flymake-cursor")
 (setq python-check-command "pyflakes")
+
+
 
 
 ;(require 'tramp)

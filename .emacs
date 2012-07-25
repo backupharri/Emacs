@@ -195,6 +195,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   my-emacs-unix-command ";"
 	   my-emacs-unix-util ";"
        "c:/Python26/Scripts" ";"
+       "c:/Program Files (x86)/Git/bin" ";"
 	   (getenv "PATH")
 	   ))
   )

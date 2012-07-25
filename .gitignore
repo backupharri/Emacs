@@ -4,5 +4,10 @@ Emacs/.history
 Emacs/.recentf
 .emacs-places
 .recentf
+.gitconfig
 *~
 *.swp
+.ssh/*
+.emacs.d/eshell/*
+
+

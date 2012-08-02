@@ -15,3 +15,4 @@ in the ~/.emacs file.
 In Unix-like OS, to create symbol link:
 ln -s [Github Folder]/Emacs/.emacs ~/.emacs
 ln -s [Github Folder]/Emacs/.emacs.d/ ~/.emacs.d/
+test clone

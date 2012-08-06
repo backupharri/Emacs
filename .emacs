@@ -130,12 +130,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
    ((eq system-type 'windows-nt)
     ;;Notebook
-    (if (string-match(system-name) "hfeng-T60p")    
 	(set-face-attribute
-	 ;; 'default nil :font "Consolas 10")
+	 'default nil :font "Consolas 10")
 	 ;; 'default nil :font "Courier New 10")
 	 ;; 'default nil :font "Inconsolata 10")
-	 'default nil :font "Courier10 BT 11"))
+	 ;; 'default nil :font "Courier10 BT 11"))
     ;;Office
     (if (string-match(system-name) "sh-rd-hfeng")
 	(set-face-attribute

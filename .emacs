@@ -171,8 +171,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ((eq system-type 'darwin)
     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
   ((eq system-type 'windows-nt)
-    (if (string-match(system-name) "hfeng-T60p")    
-	(defconst my-emacs-path "c:/github/Emacs/"))
+    (defconst my-emacs-path "c:/github/Emacs/")
     (if (string-match(system-name) "sh-rd-hfeng")
 	(defconst my-emacs-path "d:/github/Emacs/"))
     (setenv "HOME" my-emacs-path)))
@@ -188,6 +187,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (concat
      my-emacs-path
      "unixTool/UnxUtils/usr/local/wbin"))
+  
+  (defconst my-git-path "c:/Program Files/Git/bin")
+  (if (string-match(system-name) "sh-rd-hfeng")
+      (defconst my-git-path "c:/Program Files (x86)/Git/bin"))
+
 
   ;; example of setting env var named “path”,
   ;; by appending a new path to existing path
@@ -195,6 +199,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	  (concat
 	   my-emacs-unix-command ";"
 	   my-emacs-unix-util ";"
+	   my-git-path ";"
        "c:/Python26/Scripts" ";"
        "c:/Program Files (x86)/Git/bin" ";"
 	   (getenv "PATH")

@@ -131,7 +131,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
    ((eq system-type 'windows-nt)
     ;;Notebook
 	(set-face-attribute
-	 'default nil :font "Consolas 10")
+	 'default nil :font "Consolas 11")
 	 ;; 'default nil :font "Courier New 10")
 	 ;; 'default nil :font "Inconsolata 10")
 	 ;; 'default nil :font "Courier10 BT 11"))
@@ -141,12 +141,13 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	 ;; 'default nil :font "Consolas 10")
 	 ;; 'default nil :font "Courier New 10")
 	 ;; 'default nil :font "Inconsolata 10")
-	 'default nil :font "Courier10 BT 10"))
+	 'default nil :font "Courier10 BT 11"))
     ;; Chinese Font
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
         (set-fontset-font (frame-parameter nil 'font)
                           charset
-                          (font-spec :family "SimSun" :size 14)))))
+                          (font-spec :family "Microsoft Yahei" :size 14)))))
+                          ;; (font-spec :family "SimSun" :size 14)))))
     
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")

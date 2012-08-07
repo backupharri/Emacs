@@ -186,7 +186,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   
   (if (string-match(system-name) "sh-rd-hfeng")
       (defconst my-emacs-path "d:/github/Emacs/")
-      (defconst my-git-path "c:/Program Files (x86)/Git/bin")
+      ;; (86) make the setting not OK
+      ;; (defconst my-git-path "c:/Program Files (x86)/Git/bin")
       (defconst my-python-path "c:/python26"))
 
   (defconst my-emacs-unix-command 

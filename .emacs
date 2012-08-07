@@ -183,13 +183,13 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (when (string-equal system-type "windows-nt")
   (defconst my-emacs-path "c:/github/Emacs/")
   (defconst my-git-path "c:/Program Files/Git/bin")
-  (defconst my-python-path "c:/python26")
+  (defconst my-python-path "c:/python26/")
   
-  (if (string-match(system-name) "sh-rd-hfeng")
-      (defconst my-emacs-path "d:/github/Emacs/")
-      ;; (86) make the setting not OK
-      ;; (defconst my-git-path "c:/Program Files (x86)/Git/bin")
-      (defconst my-python-path "c:/python26"))
+  ;; (if (string-match(system-name) "sh-rd-hfeng")
+  ;;     (defconst my-emacs-path "d:/github/Emacs/")
+  ;;     ;; (86) make the setting not OK
+  ;;     ;; (defconst my-git-path "c:/Program Files (x86)/Git/bin")
+  ;;     (defconst my-python-path "c:/python26"))
 
   (defconst my-emacs-unix-command 
     (concat
@@ -217,6 +217,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	 my-python-script-path ";"
 	 (getenv "PATH")
 	 ))
+
+(setq exec-path
+      '(
+	"C:/python26/"
+	))
 
 (setenv "HOME" my-emacs-path)
 

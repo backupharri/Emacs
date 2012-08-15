@@ -1,7 +1,4 @@
 # Emacs ignore file
-Emacs/.gitconfig
-Emacs/.history
-Emacs/.recentf
 .emacs-places
 .recentf
 .gitconfig
@@ -9,5 +6,6 @@ Emacs/.recentf
 *.swp
 .ssh/*
 .emacs.d/eshell/*
+.emacs.d/tramp
 
 

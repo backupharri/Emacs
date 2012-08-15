@@ -283,3 +283,4 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;(require 'hl-line)
 ;(global-hl-line-mode t)
 
+(setq password-cache-expiry 200)

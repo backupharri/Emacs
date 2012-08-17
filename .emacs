@@ -186,8 +186,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (defconst my-python-path "c:/python26/")
   
   (if (string-match(system-name) "sh-rd-hfeng")
-      (defconst my-emacs-path "d:/github/Emacs/")
-      (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
+      (defconst my-emacs-path "d:/github/Emacs/"))
+  (if (string-match(system-name) "sh-rd-hfeng")
+      (defconst my-git-path "c:/Program Files (x86)/Git/bin/"))
+  (if (string-match(system-name) "sh-rd-hfeng")
       (defconst my-python-path "c:/python26/"))
 
   (defconst my-emacs-unix-command 

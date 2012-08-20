@@ -167,19 +167,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 ;;=====Advanced part, need additional plugins=======;;
 
-;; (cond
-;;   ((eq system-type 'darwin)
-;;     (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/"))
-;;   ((eq system-type 'windows-nt)
-;;     (defconst my-emacs-path "c:/github/Emacs/")
-;;     (if (string-match(system-name) "sh-rd-hfeng")
-;; 	(defconst my-emacs-path "d:/github/Emacs/"))
-;;     (setenv "HOME" my-emacs-path)))
-
-(when (string-equal system-type "darwin")
-  (defconst my-emacs-path "/Users/fenghaoran18/github/Editor/Emacs/")
-)
-
 (when (string-equal system-type "windows-nt")
   (defconst my-emacs-path "c:/github/Emacs/")
   (defconst my-git-path "c:/Program Files/Git/bin/")
@@ -206,25 +193,25 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (concat
      my-python-path
      "Scripts"))
+
+  ;; example of setting env var named “path”,
+  ;; by appending a new path to existing path
+  (setenv "PATH"
+	  (concat
+	   my-emacs-unix-command ";"
+	   my-emacs-unix-util ";"
+	   my-git-path ";"
+	   my-python-path ";"
+	   my-python-script-path ";"
+	   (getenv "PATH")
+	   ))
+  (setenv "HOME" my-emacs-path)
+
+  (setq exec-path
+	'(
+	  "C:/python26/"
+	  ))
   )
-;; example of setting env var named “path”,
-;; by appending a new path to existing path
-(setenv "PATH"
-	(concat
-	 my-emacs-unix-command ";"
-	 my-emacs-unix-util ";"
-	 my-git-path ";"
-	 my-python-path ";"
-	 my-python-script-path ";"
-	 (getenv "PATH")
-	 ))
-
-(setq exec-path
-      '(
-	"C:/python26/"
-	))
-
-(setenv "HOME" my-emacs-path)
 
 ;;packages server:marmalade
 (require 'package)

@@ -12,7 +12,7 @@
 
 ;;Remove tool bar
 (tool-bar-mode -1)
-(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;;No bell and flash
 (setq ring-bell-function 'ignore)
@@ -114,40 +114,66 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
        (set-frame-parameter (selected-frame) 'alpha (list a ab)) 
        (add-to-list 'default-frame-alist (cons 'alpha (list a ab))) 
        ) (car h) (car (cdr h))) 
+
+
     (setq alpha-list (cdr (append alpha-list (list h)))) 
     ) 
-) 
+)
+
+(when (string-equal system-type "windows-nt")
+  ;;Notebook
+  (set-face-attribute
+   'default nil :font "Consolas 11")
+  ;; 'default nil :font "Courier New 10")
+  ;; 'default nil :font "Inconsolata 10")
+  ;; 'default nil :font "Courier10 BT 11"))
+  ;;Office
+  (if (string-match(system-name) "sh-rd-hfeng")
+      (set-face-attribute
+       'default nil :font "Consolas 10"))
+  ;; 'default nil :font "Courier New 10")
+  ;; 'default nil :font "Inconsolata 10")
+  ;; 'default nil :font "Courier10 BT 11"))
+  ;; Chinese dolist
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+		      charset
+		      (font-spec :family "Microsoft Yahei" :size 14)))))
+;; (font-spec :family "SimSun" :size 14)))))
+
+)
+
+(when (string-equal system-type "darwin")
+  ;; for build from http://emacsformacos.com, you can only use 
+  ;; M-x ns-popup-font-panel to set the font
+)
+
 
 ;;Font-setting
-(cond
-  ((eq system-type 'darwin)
-    (set-face-attribute 'default nil :height 150)
-    ;; Use consolas for latin-3 charset.
-    (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
-    ;; Chinese fontset.
-    ;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
-    (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
+;; (cond
+;;   ((eq system-type 'darwin)
+;;     (set-face-attribute 'default nil :height 150)
+;;     ;; Use consolas for latin-3 charset.
+;;     (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
+;;     ;; Chinese fontset.
+;;     ;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
+;;     (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
 
-   ((eq system-type 'windows-nt)
-    ;;Notebook
-	(set-face-attribute
-	 'default nil :font "Consolas 11")
-	 ;; 'default nil :font "Courier New 10")
-	 ;; 'default nil :font "Inconsolata 10")
-	 ;; 'default nil :font "Courier10 BT 11"))
-    ;;Office
-    (if (string-match(system-name) "sh-rd-hfeng")
-	(set-face-attribute
-	 'default nil :font "Consolas 10"))
-	 ;; 'default nil :font "Courier New 10")
-	 ;; 'default nil :font "Inconsolata 10")
-	 ;; 'default nil :font "Courier10 BT 11"))
-    ;; Chinese Font
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-        (set-fontset-font (frame-parameter nil 'font)
-                          charset
-                          (font-spec :family "Microsoft Yahei" :size 14)))))
-                          ;; (font-spec :family "SimSun" :size 14)))))
+;;    ((eq system-type 'windows-nt)
+;;     ;;Notebook
+;; 	(set-face-attribute
+;; 	 'default nil :font "Consolas 11")
+;; 	 ;; 'default nil :font "Courier New 10")
+;; 	 ;; 'default nil :font "Inconsolata 10")
+;; 	 ;; 'default nil :font "Courier10 BT 11"))
+;;     ;;Office
+;;     (if (string-match(system-name) "sh-rd-hfeng")
+;; 	(set-face-attribute
+;; 	 'default nil :font "Consolas 10"))
+;; 	 ;; 'default nil :font "Courier New 10")
+;; 	 ;; 'default nil :font "Inconsolata 10")
+;; 	 ;; 'default nil :font "Courier10 BT 11"))
+;;     ;; Chinese Font
     
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")
@@ -207,11 +233,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   ))
   (setenv "HOME" my-emacs-path)
 
-  (setq exec-path
+  (setq exec-pathPPnn
 	'(
 	  "C:/python26/"
 	  ))
-  )
+)
 
 ;;packages server:marmalade
 (require 'package)
@@ -244,20 +270,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;python-mode
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-;; (add-hook 'find-file-hook 'flymake-find-file-hook)
-;; (when (load "flymake" t)
-;;   (defun flymake-pyflakes-init ()
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;;                'flymake-create-temp-inplace))
-;;        (local-file (file-relative-name
-;;             temp-file
-;;             (file-name-directory buffer-file-name))))
-;;       (list "pychecker"  (list local-file))))
-;;    (add-to-list 'flymake-allowed-file-name-masks
-;;              '("\\.py\\'" flymake-pyflakes-init)))
-;; (load-library "flymake-cursor")
-;; (setq python-check-command "pyflakes")
 
 (require 'tramp)
 (require 'python-pep8)

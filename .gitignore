@@ -4,8 +4,10 @@
 .gitconfig
 *~
 *.swp
+.#*
 .ssh/*
 .emacs.d/eshell/*
 .emacs.d/tramp
+.bash_history
 
 

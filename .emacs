@@ -138,7 +138,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
 		      charset
-		      (font-spec :family "Microsoft Yahei" :size 14)))))
+		      (font-spec :family "Microsoft Yahei" :size 14)))
 ;; (font-spec :family "SimSun" :size 14)))))
 
 )
@@ -146,6 +146,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (when (string-equal system-type "darwin")
   ;; for build from http://emacsformacos.com, you can only use 
   ;; M-x ns-popup-font-panel to set the font
+  (menu-bar-mode -1)
 )
 
 

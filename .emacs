@@ -146,7 +146,15 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (when (string-equal system-type "darwin")
   ;; for build from http://emacsformacos.com, you can only use 
   ;; M-x ns-popup-font-panel to set the font
-  (menu-bar-mode -1)
+  ;; (menu-bar-mode -1)
+  (setenv "PATH"
+	  (concat
+	   ;; my-python-script-path ";"
+	   "/opt/local/bin" ":"
+           "/usr/bin:/bin"  ":"
+	   "/usr/sbin:/sbin" ":"
+	   (getenv "PATH")
+	   ))
 )
 
 

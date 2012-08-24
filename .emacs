@@ -130,7 +130,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ;;Office
   (if (string-match(system-name) "sh-rd-hfeng")
       (set-face-attribute
-       'default nil :font "Consolas 10"))
+       'default nil :font "Consolas 12"))
   ;; 'default nil :font "Courier New 10")
   ;; 'default nil :font "Inconsolata 10")
   ;; 'default nil :font "Courier10 BT 11"))
@@ -248,9 +248,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (package-initialize)
 
 ;use only for emacs24
-;(load-theme 'tsdh-dark)
-(load-theme 'tango-dark)
- 
+;; (load-theme 'tango-dark)		
+(load-theme 'sanityinc-solarized-dark t)
+
 ;;Open Recent File History
 (recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
@@ -270,7 +270,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (run-with-idle-timer 1 nil 'my-max-window)))
 ;;python-mode
 (require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))                     
 
 (require 'tramp)
 (require 'python-pep8)
@@ -286,3 +286,16 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;(global-hl-line-mode t)
 
 (setq password-cache-expiry 200)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(scroll-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

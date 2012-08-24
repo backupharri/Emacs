@@ -234,7 +234,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   ))
   (setenv "HOME" my-emacs-path)
 
-  (setq exec-pathPPnn
+  (setq exec-path
 	'(
 	  "C:/python26/"
 	  ))

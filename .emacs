@@ -175,32 +175,31 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 )
 
 (when (string-equal system-type "darwin")
-    ;(set-face-attribute 'default nil :height 150)
-    ;;; Use consolas for latin-3 charset.
-    ;(set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
-    ;;; Chinese fontset.
-    ;;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
-    ;(set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
-      ;; for build from http://emacsformacos.com, you can only use
-      ;; M-x ns-popup-font-panel to set the font
-      ;; (menu-bar-mode -1)
+  (set-face-attribute 'default nil :height 150)
+  ;; Use consolas for latin-3 charset.
+  (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
+  (set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
+  (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1")
+
+  (menu-bar-mode -1)
   (setenv "PATH"
-      (concat
-       ;; my-python-script-path ";"
-       "/opt/local/bin" ":"
-       "/usr/bin:/bin"  ":"
-       "/usr/sbin:/sbin" ":"
-       (getenv "PATH")
-       ))
-    ;;Maximum Emacs when Open
-    (defun my-max-window()
+	  (concat
+	   ;;/opt/local/bin is for mac port
+	   "/opt/local/bin" ":"
+	   "/usr/bin:/bin"  ":"
+	   "/usr/sbin:/sbin" ":"
+	   (getenv "PATH")
+	   ))
+  
+  ;;Maximum Emacs when Open
+  (defun my-max-window()
     (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+			   '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
     (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+			   '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
     )
-    (run-with-idle-timer 1 nil 'my-max-window)
-)
+  (run-with-idle-timer 1 nil 'my-max-window)
+  )
 
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")

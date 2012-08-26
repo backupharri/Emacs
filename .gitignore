@@ -5,6 +5,7 @@
 *~
 *.swp
 \#.*
+.#*
 .ssh/*
 .emacs.d/eshell/*
 .emacs.d/tramp

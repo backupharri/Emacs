@@ -121,98 +121,23 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 )
 
 (when (string-equal system-type "windows-nt")
-  ;;Notebook
   (set-face-attribute
    'default nil :font "Consolas 11")
-  ;; 'default nil :font "Courier New 10")
-  ;; 'default nil :font "Inconsolata 10")
-  ;; 'default nil :font "Courier10 BT 11"))
-  ;;Office
-  (if (string-match(system-name) "sh-rd-hfeng")
-      (set-face-attribute
-       'default nil :font "Consolas 12"))
-  ;; 'default nil :font "Courier New 10")
-  ;; 'default nil :font "Inconsolata 10")
-  ;; 'default nil :font "Courier10 BT 11"))
-  ;; Chinese dolist
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
 		      charset
 		      (font-spec :family "Microsoft Yahei" :size 14)))
-;; (font-spec :family "SimSun" :size 14)))))
+            ;;(font-spec :family "SimSun" :size 14)))))
 
-)
-
-(when (string-equal system-type "darwin")
-  ;; for build from http://emacsformacos.com, you can only use 
-  ;; M-x ns-popup-font-panel to set the font
-  ;; (menu-bar-mode -1)
-  (setenv "PATH"
-	  (concat
-	   ;; my-python-script-path ";"
-	   "/opt/local/bin" ":"
-           "/usr/bin:/bin"  ":"
-	   "/usr/sbin:/sbin" ":"
-	   (getenv "PATH")
-	   ))
-)
-
-
-;;Font-setting
-;; (cond
-;;   ((eq system-type 'darwin)
-;;     (set-face-attribute 'default nil :height 150)
-;;     ;; Use consolas for latin-3 charset.
-;;     (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
-;;     ;; Chinese fontset.
-;;     ;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
-;;     (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
-
-;;    ((eq system-type 'windows-nt)
-;;     ;;Notebook
-;; 	(set-face-attribute
-;; 	 'default nil :font "Consolas 11")
-;; 	 ;; 'default nil :font "Courier New 10")
-;; 	 ;; 'default nil :font "Inconsolata 10")
-;; 	 ;; 'default nil :font "Courier10 BT 11"))
-;;     ;;Office
-;;     (if (string-match(system-name) "sh-rd-hfeng")
-;; 	(set-face-attribute
-;; 	 'default nil :font "Consolas 10"))
-;; 	 ;; 'default nil :font "Courier New 10")
-;; 	 ;; 'default nil :font "Inconsolata 10")
-;; 	 ;; 'default nil :font "Courier10 BT 11"))
-;;     ;; Chinese Font
-    
-;;UTF-8 Setting
-(setq current-language-environment "UTF-8")
-(setq default-input-method "chinese-py")
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
-
-;;packages server:marmalade
-(require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
-(package-initialize)
-
-;;=====Advanced part, need additional plugins=======;;
-
-(when (string-equal system-type "windows-nt")
-  (defconst my-emacs-path "c:/github/Emacs/")
-  (defconst my-git-path "c:/Program Files/Git/bin/")
+  (defconst my-emacs-path "c:/gitbox/Emacs/")
   (defconst my-python-path "c:/python26/")
+  (defconst my-git-path "c:/Program Files/Git/bin/")
   
-  (if (string-match(system-name) "sh-rd-hfeng")
-      (defconst my-emacs-path "d:/github/Emacs/"))
   (if (string-match(system-name) "sh-rd-hfeng")
       (defconst my-git-path "c:/Program Files (x86)/Git/bin/"))
   (if (string-match(system-name) "sh-rd-hfeng")
-      (defconst my-python-path "c:/python26/"))
+      (set-face-attribute
+       'default nil :font "Consolas 12"))
 
   (defconst my-emacs-unix-command 
     (concat
@@ -245,8 +170,38 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (setq exec-path
 	'(
 	  "C:/python26/"
+	  "C:/python27/"
 	  ))
 )
+
+(when (string-equal system-type "darwin")
+    ;(set-face-attribute 'default nil :height 150)
+    ;;; Use consolas for latin-3 charset.
+    ;(set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
+    ;;; Chinese fontset.
+    ;;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
+    ;(set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
+      ;; for build from http://emacsformacos.com, you can only use 
+      ;; M-x ns-popup-font-panel to set the font
+      ;; (menu-bar-mode -1)
+  (setenv "PATH"
+	  (concat
+	   ;; my-python-script-path ";"
+	   "/opt/local/bin" ":"
+           "/usr/bin:/bin"  ":"
+	   "/usr/sbin:/sbin" ":"
+	   (getenv "PATH")
+	   ))
+)
+
+;;UTF-8 Setting
+(setq current-language-environment "UTF-8")
+(setq default-input-method "chinese-py")
+(setq locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
 
 ;;packages server:marmalade
 (require 'package)
@@ -254,6 +209,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
+
+;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
 ;; (load-theme 'tango-dark)		
@@ -283,16 +240,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (require 'tramp)
 (require 'python-pep8)
 
-;(require 'python-pep8)
-
-;(require 'python-pylint)
-
-;;=====Unused setting previously set, may also useful in future=======;;
-
-;;highlight the current line
-;(require 'hl-line)
-;(global-hl-line-mode t)
-
 (setq password-cache-expiry 200)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -307,3 +254,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;=====Unused setting previously set, may also useful in future=======;;
+
+;;highlight the current line
+;(require 'hl-line)
+;(global-hl-line-mode t)
+

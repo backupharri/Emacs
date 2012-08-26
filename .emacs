@@ -43,17 +43,17 @@
 
 ;;80 is the column limit
 (setq default-fill-column 80)
-(setq-default auto-fill-function 'do-auto-fill) 
+(setq-default auto-fill-function 'do-auto-fill)
 
 ;;if kill content are the same, ignore them.
 (setq kill-do-not-save-duplicates t)
 
 ;;Stop scroll-bar
-(setq scroll-step 0 
-      scroll-margin 0 
-      scroll-conservatively 10000) 
+(setq scroll-step 0
+      scroll-margin 0
+      scroll-conservatively 10000)
 
-;;Cmd is used for meta for MAC 
+;;Cmd is used for meta for MAC
 (setq mac-option-key-is-meta nil
       mac-command-key-is-meta t
       mac-command-modifier 'meta
@@ -70,10 +70,10 @@
 (global-set-key "\C-c\C-m"      'execute-extended-command)
 
 ;;Same behavior with BASH
-(global-set-key "\C-h"          'backward-delete-char-untabify) 
-(defun backward-kill-line (arg) (interactive "p") (kill-line 0) ) 
-;; if you have to use Ctrl+U, you have to use ESC instead 
-(global-set-key (kbd "C-u") 'backward-kill-line) 
+(global-set-key "\C-h"          'backward-delete-char-untabify)
+(defun backward-kill-line (arg) (interactive "p") (kill-line 0) )
+;; if you have to use Ctrl+U, you have to use ESC instead
+(global-set-key (kbd "C-u") 'backward-kill-line)
 
 
 ;;ctrl space is for sogou input method
@@ -105,19 +105,19 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (comment-dwim arg)))(global-set-key "\M-;" 'qiang-comment-dwim-line)
 
 ;;set transparent and use f4 to control it
-(global-set-key [(f4)] 'loop-alpha) 
+(global-set-key [(f4)] 'loop-alpha)
 (setq alpha-list '((100 100) (95 65) (70 55)))
-(defun loop-alpha () 
-  (interactive) 
-  (let ((h (car alpha-list)))                ;; head value will set to 
-    ((lambda (a ab) 
-       (set-frame-parameter (selected-frame) 'alpha (list a ab)) 
-       (add-to-list 'default-frame-alist (cons 'alpha (list a ab))) 
-       ) (car h) (car (cdr h))) 
+(defun loop-alpha ()
+  (interactive)
+  (let ((h (car alpha-list)))                ;; head value will set to
+    ((lambda (a ab)
+       (set-frame-parameter (selected-frame) 'alpha (list a ab))
+       (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))
+       ) (car h) (car (cdr h)))
 
 
-    (setq alpha-list (cdr (append alpha-list (list h)))) 
-    ) 
+    (setq alpha-list (cdr (append alpha-list (list h))))
+    )
 )
 
 (when (string-equal system-type "windows-nt")
@@ -125,30 +125,28 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
    'default nil :font "Consolas 11")
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
-		      charset
-		      (font-spec :family "Microsoft Yahei" :size 14)))
+              charset
+              (font-spec :family "Microsoft Yahei" :size 14)))
             ;;(font-spec :family "SimSun" :size 14)))))
 
   (defconst my-emacs-path "c:/gitbox/Emacs/")
   (defconst my-python-path "c:/python26/")
   (defconst my-git-path "c:/Program Files/Git/bin/")
-  
-  (if (string-match(system-name) "sh-rd-hfeng")
-      (defconst my-git-path "c:/Program Files (x86)/Git/bin/"))
-  (if (string-match(system-name) "sh-rd-hfeng")
-      (set-face-attribute
-       'default nil :font "Consolas 12"))
 
-  (defconst my-emacs-unix-command 
+  (when (string-match system-name "sh-rd-hfeng")
+       (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
+       (set-face-attribute 'default nil :font "Consolas 12"))
+
+  (defconst my-emacs-unix-command
     (concat
      my-emacs-path
      "unixTool"))
 
-  (defconst my-emacs-unix-util 
+  (defconst my-emacs-unix-util
     (concat
      my-emacs-path
      "unixTool/UnxUtils/usr/local/wbin"))
-  
+
   (defconst my-python-script-path
     (concat
      my-python-path
@@ -157,21 +155,23 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ;; example of setting env var named “path”,
   ;; by appending a new path to existing path
   (setenv "PATH"
-	  (concat
-	   my-emacs-unix-command ";"
-	   my-emacs-unix-util ";"
-	   my-git-path ";"
-	   my-python-path ";"
-	   my-python-script-path ";"
-	   (getenv "PATH")
-	   ))
+      (concat
+       my-emacs-unix-command ";"
+       my-emacs-unix-util ";"
+       my-git-path ";"
+       my-python-path ";"
+       my-python-script-path ";"
+       (getenv "PATH")
+       ))
   (setenv "HOME" my-emacs-path)
 
   (setq exec-path
-	'(
-	  "C:/python26/"
-	  "C:/python27/"
-	  ))
+    '(
+      "C:/python26/"
+      "C:/python27/"
+      ))
+  ;Maximum Windows
+    (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
 )
 
 (when (string-equal system-type "darwin")
@@ -181,17 +181,25 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     ;;; Chinese fontset.
     ;;(set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
     ;(set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1"))
-      ;; for build from http://emacsformacos.com, you can only use 
+      ;; for build from http://emacsformacos.com, you can only use
       ;; M-x ns-popup-font-panel to set the font
       ;; (menu-bar-mode -1)
   (setenv "PATH"
-	  (concat
-	   ;; my-python-script-path ";"
-	   "/opt/local/bin" ":"
-           "/usr/bin:/bin"  ":"
-	   "/usr/sbin:/sbin" ":"
-	   (getenv "PATH")
-	   ))
+      (concat
+       ;; my-python-script-path ";"
+       "/opt/local/bin" ":"
+       "/usr/bin:/bin"  ":"
+       "/usr/sbin:/sbin" ":"
+       (getenv "PATH")
+       ))
+    ;;Maximum Emacs when Open
+    (defun my-max-window()
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+    )
+    (run-with-idle-timer 1 nil 'my-max-window)
 )
 
 ;;UTF-8 Setting
@@ -205,7 +213,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 ;;packages server:marmalade
 (require 'package)
-(add-to-list 'package-archives 
+(add-to-list 'package-archives
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
@@ -213,34 +221,24 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
-;; (load-theme 'tango-dark)		
+;; (load-theme 'tango-dark)
 (load-theme 'sanityinc-solarized-dark t)
 
 ;;Open Recent File History
 (recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
-;;Maximum Emacs when Open
-(cond
-   ((eq system-type 'windows-nt) 
-    (run-with-idle-timer 1 nil 'w32-send-sys-command 61488))
 
-  ((eq system-type 'darwin)
-    (defun my-max-window()
-    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-    '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-    )
-    (run-with-idle-timer 1 nil 'my-max-window)))
 ;;python-mode
 (require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))                     
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 
 (require 'tramp)
 (require 'python-pep8)
 
 (setq password-cache-expiry 200)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -190,15 +190,12 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   "/usr/sbin:/sbin" ":"
 	   (getenv "PATH")
 	   ))
-  
-  ;;Maximum Emacs when Open
-  (defun my-max-window()
-    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			   '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
-    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-			   '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-    )
-  (run-with-idle-timer 1 nil 'my-max-window)
+
+  (setq default-frame-alist '((height . 40)
+			      (width . 150) (menu-bar-lines . 20) 
+			      (tool-bar-lines . 0)))
+
+  (global-set-key [(f5)] 'ns-toggle-fullscreen)
   )
 
 ;;UTF-8 Setting

@@ -235,6 +235,13 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; python-pep8 also need tramp setting 
 (require 'python-pep8)
 
+(require 'yasnippet-bundle)
+
+(setq mmm-global-mode 't)
+(setq yas/prompt-functions '(yas/dropdown-prompt yas/x-prompt))
+
+
+(desktop-save-mode 1)
 
 ;; Unused setting, maybe useful in future
  ;'(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))

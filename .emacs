@@ -175,6 +175,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 )
 
 (when (string-equal system-type "darwin")
+  (defconst my-emacs-path "~/")
+
   (set-face-attribute 'default nil :height 150)
   ;; Use consolas for latin-3 charset.
   (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
@@ -235,7 +237,15 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; python-pep8 also need tramp setting 
 (require 'python-pep8)
 
-(require 'yasnippet-bundle)
+
+(defconst my-emacs-yasnippet-path
+  (concat
+   my-emacs-path
+   ".emacs.d/elpa/yasnippet-0.6.1/snippets/"))
+
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory my-emacs-yasnippet-path)
 
 (setq mmm-global-mode 't)
 (setq yas/prompt-functions '(yas/dropdown-prompt yas/x-prompt))

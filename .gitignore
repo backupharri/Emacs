@@ -12,5 +12,6 @@
 .emacs.d/eshell/*
 .emacs.d/tramp
 .bash_history
+.gem/
 
 

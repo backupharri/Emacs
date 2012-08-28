@@ -11,7 +11,7 @@
 .ssh/*
 .emacs.d/eshell/*
 .emacs.d/tramp
+.emacs.d/elpa/archives/
 .bash_history
 .gem/
-
 

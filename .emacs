@@ -253,6 +253,12 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 (desktop-save-mode 1)
 
+(require 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; Unused setting, maybe useful in future
  ;'(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  ;'(scroll-bar-mode nil))
+
+;; If you don't want to restart emacs to make the setting work, you can
+;; M-x load-file ~/.emacs

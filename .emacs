@@ -42,7 +42,7 @@
 (setq column-number-mode t)
 
 ;;80 is the column limit
-(setq default-fill-column 80)
+;; (setq default-fill-column 80)
 (setq-default auto-fill-function 'do-auto-fill)
 
 ;;if kill content are the same, ignore them.
@@ -260,5 +260,14 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
  ;'(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  ;'(scroll-bar-mode nil))
 
+(defun wcy-shell-mode-auto-rename-buffer (text)
+  (if (eq major-mode 'shell-mode)
+      (rename-buffer  (concat "shell: " default-directory) t)))
+(add-hook 'comint-output-filter-functions 'wcy-shell-mode-auto-rename-buffer)
+
+
+
 ;; If you don't want to restart emacs to make the setting work, you can
 ;; M-x load-file ~/.emacs
+
+

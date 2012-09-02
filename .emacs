@@ -200,6 +200,37 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (global-set-key [(f5)] 'ns-toggle-fullscreen)
   )
 
+(when (string-equal system-type "gnu/linux")
+  (defconst my-emacs-path "~/")
+
+  ;; (set-face-attribute 'default nil :height 150)
+  ;; ;; Use consolas for latin-3 charset.
+  ;; (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
+  ;; (set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
+  ;; (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1")
+  (set-face-attribute
+   'default nil :font "Courier 10 pitch 12")
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+              charset
+              (font-spec :family "Yahei Consolas Hybrid" :size 15)))
+            ;;(font-spec :family "SimSun" :size 14)))))
+
+  (setenv "PATH"
+	  (concat
+	   ;;/opt/local/bin is for mac port
+	   "/opt/local/bin" ":"
+	   "/usr/bin:/bin"  ":"
+	   "/usr/sbin:/sbin" ":"
+	   (getenv "PATH")
+	   ))
+
+  (setq default-frame-alist '((height . 40)
+			      (width . 150) (menu-bar-lines . 20) 
+			      (tool-bar-lines . 0)))
+
+  )
+
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")
 (setq default-input-method "chinese-py")

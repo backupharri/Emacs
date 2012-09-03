@@ -183,7 +183,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
   (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1")
 
-  (menu-bar-mode -1)
   (setenv "PATH"
 	  (concat
 	   ;;/opt/local/bin is for mac port
@@ -282,7 +281,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (setq yas/prompt-functions '(yas/dropdown-prompt yas/x-prompt))
 
 
-(desktop-save-mode 1)
+;(desktop-save-mode 1)
 
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)

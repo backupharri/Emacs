@@ -43,7 +43,7 @@
 
 ;;80 is the column limit
 ;; (setq default-fill-column 80)
-(setq-default auto-fill-function 'do-auto-fill)
+;; (setq-default auto-fill-function 'do-auto-fill)
 
 ;;if kill content are the same, ignore them.
 (setq kill-do-not-save-duplicates t)
@@ -250,7 +250,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 ;use only for emacs24
 ;; (load-theme 'tango-dark)
-(load-theme 'sanityinc-solarized-dark t)
+;; (load-theme 'sanityinc-solarized-dark t)
 
 ;;Open Recent File History
 (recentf-mode 1)

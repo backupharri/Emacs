@@ -121,8 +121,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 )
 
 (when (string-equal system-type "windows-nt")
+
   (set-face-attribute
-   'default nil :font "Consolas 11")
+   'default nil :font "Consolas 10")
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
               charset
@@ -135,7 +136,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   (when (string-match system-name "sh-rd-hfeng")
        (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
-       (set-face-attribute 'default nil :font "Consolas 12"))
+       (set-face-attribute 'default nil :font "Consolas 11"))
 
   (defconst my-emacs-unix-command
     (concat
@@ -249,8 +250,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
-;; (load-theme 'tango-dark)
-;; (load-theme 'sanityinc-solarized-dark t)
+(load-theme 'sanityinc-tomorrow-bright t)
 
 ;;Open Recent File History
 (recentf-mode 1)
@@ -301,19 +301,19 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; M-x load-file ~/.emacs
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-safe-themes (quote ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
+;;  '(scroll-bar-mode nil))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
 
 (require 'session)
 (add-hook 'after-init-hook

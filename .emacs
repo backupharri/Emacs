@@ -122,21 +122,27 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 (when (string-equal system-type "windows-nt")
 
+  "if you want to use Song, you have to use SimSun instead of Yahei"
   (set-face-attribute
    'default nil :font "Consolas 10")
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
               charset
               (font-spec :family "Microsoft Yahei" :size 14)))
-            ;;(font-spec :family "SimSun" :size 14)))))
 
   (defconst my-emacs-path "c:/gitbox/Emacs/")
   (defconst my-python-path "c:/python26/")
   (defconst my-git-path "c:/Program Files/Git/bin/")
 
   (when (string-match system-name "sh-rd-hfeng")
-       (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
-       (set-face-attribute 'default nil :font "Consolas 11"))
+    (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
+    "CJK language also have to set for a second time, otherwise cjk words
+     can not show correctly"
+    (set-face-attribute 'default nil :font "Consolas 11")
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+			charset
+			(font-spec :family "Microsoft Yahei" :size 15))))
 
   (defconst my-emacs-unix-command
     (concat

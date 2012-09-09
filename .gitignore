@@ -11,6 +11,7 @@
 .history
 .session
 .ssh/*
+.ssh/
 .emacs.d/eshell/*
 .emacs.d/elpa/archives/
 .emacs.d/tramp

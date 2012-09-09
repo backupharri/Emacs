@@ -124,7 +124,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   "if you want to use Song, you have to use SimSun instead of Yahei"
   (set-face-attribute
-   'default nil :font "Consolas 10")
+   'default nil :font "Courier Std 12") 
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
               charset

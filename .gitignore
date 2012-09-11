@@ -17,4 +17,4 @@
 .emacs.d/tramp
 .bash_history
 .gem/
-
+\.DS_Store

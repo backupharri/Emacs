@@ -41,10 +41,6 @@
 ;; show column number
 (setq column-number-mode t)
 
-;;80 is the column limit
-;; (setq default-fill-column 80)
-;; (setq-default auto-fill-function 'do-auto-fill)
-
 ;;if kill content are the same, ignore them.
 (setq kill-do-not-save-duplicates t)
 
@@ -195,22 +191,26 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (defconst my-emacs-path "~/")
 
   (set-face-attribute 'default nil :height 150)
-  ;; Use consolas for latin-3 charset.
-  (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
-  (set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
-  (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1")
+  ;; Be ware that the following emacs font setting can
+  ;; only be used in brew build emacs with
+  ;; > brew install emacs --cocoa --srge
+  (set-face-attribute
+   'default nil :font "Courier New 18")
+  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font)
+              charset
+              (font-spec :family "华文宋体" :size 16)))
 
   (setenv "PATH"
 	  (concat
-	   ;;/opt/local/bin is for mac port
-	   "/opt/local/bin" ":"
+	   "/usr/local/bin" ":" ;; /usr/local/bin is for homebrew
 	   "/usr/bin:/bin"  ":"
 	   "/usr/sbin:/sbin" ":"
 	   (getenv "PATH")
 	   ))
 
   (setq default-frame-alist '((height . 40)
-			      (width . 150) (menu-bar-lines . 20) 
+			      (width . 120) (menu-bar-lines . 20) 
 			      (tool-bar-lines . 0)))
 
   (global-set-key [(f5)] 'ns-toggle-fullscreen)
@@ -219,23 +219,15 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (when (string-equal system-type "gnu/linux")
   (defconst my-emacs-path "~/")
 
-  ;; (set-face-attribute 'default nil :height 150)
-  ;; ;; Use consolas for latin-3 charset.
-  ;; (set-fontset-font "fontset-default" 'iso-8859-3 "-apple-Monaco-medium-normal-normal-*-14-*-*-*-*-m-0-iso10646-1")
-  ;; (set-fontset-font "fontset-default" 'unicode "-outline-微软雅黑-normal-normal-normal-sans-16-*-*-*-p-*-iso8859-1")
-  ;; (set-fontset-font "fontset-default" 'han "-apple-STSong-medium-normal-normal-*-16-*-*-*-*-p-0-iso10646-1")
   (set-face-attribute
    'default nil :font "Courier 10 pitch 12")
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
               charset
               (font-spec :family "Yahei Consolas Hybrid" :size 15)))
-            ;;(font-spec :family "SimSun" :size 14)))))
 
   (setenv "PATH"
 	  (concat
-	   ;;/opt/local/bin is for mac port
-	   "/opt/local/bin" ":"
 	   "/usr/bin:/bin"  ":"
 	   "/usr/sbin:/sbin" ":"
 	   (getenv "PATH")
@@ -266,7 +258,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
-(load-theme 'sanityinc-tomorrow-bright t)
+(load-theme 'sanityinc-tomorrow-night t)
 
 ;;Open Recent File History
 (recentf-mode 1)
@@ -283,7 +275,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; python-pep8 also need tramp setting 
 (require 'python-pep8)
 
-
 (defconst my-emacs-yasnippet-path
   (concat
    my-emacs-path
@@ -297,53 +288,29 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (setq yas/prompt-functions '(yas/dropdown-prompt yas/x-prompt))
 
 
-;(desktop-save-mode 1)
-
 (require 'ibuffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; Unused setting, maybe useful in future
- ;'(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
- ;'(scroll-bar-mode nil))
 
 (defun wcy-shell-mode-auto-rename-buffer (text)
   (if (eq major-mode 'shell-mode)
       (rename-buffer  (concat "shell: " default-directory) t)))
 (add-hook 'comint-output-filter-functions 'wcy-shell-mode-auto-rename-buffer)
 
+(require 'session)
+(add-hook 'after-init-hook
+	  'session-initialize)
+
+;;-----------Unused setting-------------------
+;(desktop-save-mode 1)
+
+;;80 is the column limit
+;; (setq default-fill-column 80)
+;; (setq-default auto-fill-function 'do-auto-fill)
 
 
 ;; If you don't want to restart emacs to make the setting work, you can
 ;; M-x load-file ~/.emacs
 
-
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(custom-safe-themes (quote ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
-;;  '(scroll-bar-mode nil))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
-
-(require 'session)
-(add-hook 'after-init-hook
-	  'session-initialize)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("8b9d07b01f2a9566969c2049faf982cab6a4b483dd43de7fd6a016bb861f7762" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; If you want to list all the font available you can
+;; M-x set-default-font
+;; TAB to list fonts

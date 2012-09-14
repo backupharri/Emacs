@@ -198,7 +198,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     '(
       "C:/python26/"
       "C:/python27/"
+      "C:/Program Files (x86)/Git/bin"
       ))
+
+  
   ;Maximum Windows
     (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
 )
@@ -321,6 +324,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 ;; I don't want to use org-mode's auto type
 (setq org-export-with-sub-superscripts nil)
+
+(require 'magit)
 
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)

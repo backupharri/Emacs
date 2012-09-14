@@ -56,7 +56,7 @@
       mac-option-modifier 'none)
 
 ;;=====Key Binding=======;;
-(global-set-key "\C-q"          'cua-mode)
+(global-set-key "\M-q"          'cua-mode)
 (global-set-key "\C-w"          'backward-kill-word)
 (global-set-key "\C-x\C-k"      'kill-region)
 (global-set-key "\C-o"          'other-window)
@@ -65,6 +65,20 @@
 (global-set-key [(meta ?/)]     'hippie-expand)
 (global-set-key "\C-x\C-m"      'execute-extended-command)
 (global-set-key "\C-c\C-m"      'execute-extended-command)
+
+
+;; copy region or whole line
+(global-set-key "\C-q"
+                (lambda ()
+                  (interactive)
+                  (if mark-active
+                      (kill-ring-save (region-beginning)
+                                      (region-end))
+                    (progn
+                     (kill-ring-save (line-beginning-position)
+                                     (line-end-position))
+                     (message "copied line")))))
+
 
 ;;Same behavior with BASH
 (global-set-key "\C-h"          'backward-delete-char-untabify)

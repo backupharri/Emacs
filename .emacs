@@ -56,6 +56,7 @@
       mac-option-modifier 'none)
 
 ;;=====Key Binding=======;;
+(global-set-key "\C-q"          'cua-mode)
 (global-set-key "\C-w"          'backward-kill-word)
 (global-set-key "\C-x\C-k"      'kill-region)
 (global-set-key "\C-o"          'other-window)
@@ -228,8 +229,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   (setenv "PATH"
 	  (concat
-	   "/usr/bin:/bin"  ":"
-	   "/usr/sbin:/sbin" ":"
+	   "/usr/bin:"  ":"
+	   "/bin:"      ":"
+	   "/usr/sbin:" ":"
+	   "/sbin:"     ":"
 	   (getenv "PATH")
 	   ))
 
@@ -300,6 +303,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (add-hook 'after-init-hook
 	  'session-initialize)
 
+
+;; I don't want to use org-mode's auto type
+(setq org-export-with-sub-superscripts nil)
+
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)
 
@@ -314,3 +321,16 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; If you want to list all the font available you can
 ;; M-x set-default-font
 ;; TAB to list fonts
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
+ '(scroll-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

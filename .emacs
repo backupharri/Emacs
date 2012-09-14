@@ -56,7 +56,7 @@
       mac-option-modifier 'none)
 
 ;;=====Key Binding=======;;
-(global-set-key "\M-q"          'cua-mode)
+(global-set-key "\C-q"          'cua-mode)
 (global-set-key "\C-w"          'backward-kill-word)
 (global-set-key "\C-x\C-k"      'kill-region)
 (global-set-key "\C-o"          'other-window)
@@ -67,17 +67,18 @@
 (global-set-key "\C-c\C-m"      'execute-extended-command)
 
 
-;; copy region or whole line
-(global-set-key "\C-q"
-                (lambda ()
-                  (interactive)
-                  (if mark-active
-                      (kill-ring-save (region-beginning)
-                                      (region-end))
-                    (progn
-                     (kill-ring-save (line-beginning-position)
-                                     (line-end-position))
-                     (message "copied line")))))
+;; C-c C-y to copy current line 
+(global-set-key (kbd "C-x C-y") 'copy-lines)
+
+(defun copy-lines(&optional arg)
+  (interactive "p")
+  (save-excursion
+    (beginning-of-line)
+    (set-mark (point))
+    (next-line arg)
+    (kill-ring-save (mark) (point))
+    )
+  )
 
 
 ;;Same behavior with BASH

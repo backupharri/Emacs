@@ -224,7 +224,12 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   "/usr/sbin:/sbin" ":"
 	   (getenv "PATH")
 	   ))
-
+  (setq exec-path
+    '(
+      "/usr/local/bin"
+      "/usr/bin"
+      ))
+  
   (setq default-frame-alist '((height . 40)
 			      (width . 120) (menu-bar-lines . 20) 
 			      (tool-bar-lines . 0)))
@@ -322,6 +327,28 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; I don't want to use org-mode's auto type
 (setq org-export-with-sub-superscripts nil)
 
+
+; for mysql
+;;
+;; show output on windows in buffer
+(setq sql-mysql-options '("-C" "-t" "-f" "-n"))
+
+;; truncate lines for long tables
+(add-hook 'sql-interactive-mode-hook
+(function (lambda ()
+(setq truncate-lines t))))
+
+(setq auto-mode-alist 
+(append 
+(list 
+;; insert entries for other modes here if needed. 
+(cons "\\.sq$" 'sql-mode)) 
+auto-mode-alist))
+(add-hook 'sql-mode-hook 'font-lock-mode) 
+
+
+
+
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)
 
@@ -341,7 +368,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
+ '(custom-safe-themes (quote ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
  '(scroll-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

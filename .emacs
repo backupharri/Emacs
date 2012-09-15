@@ -217,18 +217,37 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
               charset
               (font-spec :family "华文宋体" :size 16)))
 
-  (setenv "PATH"
-	  (concat
-	   "/usr/local/bin" ":" ;; /usr/local/bin is for homebrew
-	   "/usr/bin:/bin"  ":"
-	   "/usr/sbin:/sbin" ":"
-	   (getenv "PATH")
-	   ))
-  (setq exec-path
-    '(
-      "/usr/local/bin"
-      "/usr/bin"
-      ))
+  ;; (setenv "PATH"
+  ;; 	  (concat
+  ;; 	   "/usr/local/bin" ":" ;; /usr/local/bin is for homebrew
+  ;; 	   "/usr/bin:/bin"  ":"
+  ;; 	   "/usr/sbin:/sbin" ":"
+  ;; 	   (getenv "PATH")
+  ;; 	   ))
+  ;; (setq exec-path
+  ;;   '(
+  ;;     "/usr/local/bin"
+  ;;     "/usr/bin"
+  ;;     ))
+  
+  (let (
+        (mypaths
+         '(
+	   "/bin"
+	   "/sbin"
+	   "/usr"
+	   "/usr/bin"
+	   "/usr/local/bin"
+	   "/usr/sbin"
+           ) )
+        )
+
+    (setenv "PATH" (mapconcat 'identity mypaths ":") )
+    (setq exec-path (append mypaths (list "." exec-directory)) )
+    ) 
+
+
+  
   
   (setq default-frame-alist '((height . 40)
 			      (width . 120) (menu-bar-lines . 20) 

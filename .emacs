@@ -150,7 +150,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "CPMono_v07 Plain 11")
+    (set-face-attribute 'default nil :font "Consolas 13")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
@@ -169,13 +169,19 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (defconst my-emacs-unix-command
     (concat
      my-emacs-path
-     "unixTool"))
+     "unixTool/Misc"))
 
+  (defconst my-emacs-unix-gnuwin32
+    (concat
+     my-emacs-path
+     "unixTool/GnuWin32/bin"))
+  
   (defconst my-emacs-unix-util
     (concat
      my-emacs-path
      "unixTool/UnxUtils/usr/local/wbin"))
 
+  
   (defconst my-python-script-path
     (concat
      my-python-path
@@ -185,8 +191,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ;; by appending a new path to existing path
   (setenv "PATH"
       (concat
-       my-emacs-unix-command ";"
+       my-emacs-unix-gnuwin32 ";"
        my-emacs-unix-util ";"
+       my-emacs-unix-command ";"
        my-git-path ";"
        my-python-path ";"
        my-python-script-path ";"

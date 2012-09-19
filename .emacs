@@ -80,13 +80,11 @@
     )
   )
 
-
 ;;Same behavior with BASH
 (global-set-key "\C-h"          'backward-delete-char-untabify)
 (defun backward-kill-line (arg) (interactive "p") (kill-line 0) )
 ;; if you have to use Ctrl+U, you have to use ESC instead
 (global-set-key (kbd "C-u") 'backward-kill-line)
-
 
 ;;ctrl space is for sogou input method
 (global-set-key [(control space)] nil)
@@ -181,7 +179,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
      my-emacs-path
      "unixTool/UnxUtils/usr/local/wbin"))
 
-  
   (defconst my-python-script-path
     (concat
      my-python-path
@@ -253,9 +250,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (setq exec-path (append mypaths (list "." exec-directory)) )
     ) 
 
-
-  
-  
   (setq default-frame-alist '((height . 40)
 			      (width . 120) (menu-bar-lines . 20) 
 			      (tool-bar-lines . 0)))
@@ -285,7 +279,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (setq default-frame-alist '((height . 40)
 			      (width . 150) (menu-bar-lines . 20) 
 			      (tool-bar-lines . 0)))
-
   )
 
 ;;UTF-8 Setting
@@ -349,13 +342,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (add-hook 'after-init-hook
 	  'session-initialize)
 
-
 ;; I don't want to use org-mode's auto type
 (setq org-export-with-sub-superscripts nil)
 
-
 ; for mysql
-;;
 ;; show output on windows in buffer
 (setq sql-mysql-options '("-C" "-t" "-f" "-n"))
 
@@ -372,10 +362,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 auto-mode-alist))
 (add-hook 'sql-mode-hook 'font-lock-mode) 
 
-;;bash-like operation in shell mode
+;;clean all the buffer content 
 (add-hook 'shell-mode-hook 'my-shell-mode-hook) 
 (defun my-shell-mode-hook () 
-  (local-set-key (kbd "C-l") (lambda nil (interactive) (erase-buffer) (comint-send-input))) 
+  (local-set-key (kbd "C-x C-l") (lambda nil (interactive) (erase-buffer) (comint-send-input))) 
   ) 
 
 ;;set our default style for cc mode

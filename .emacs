@@ -378,6 +378,11 @@ auto-mode-alist))
   (local-set-key (kbd "C-l") (lambda nil (interactive) (erase-buffer) (comint-send-input))) 
   ) 
 
+;;set our default style for cc mode
+(setq c-default-style "stroustrup"
+      c-basic-offset 4)
+
+
 
 
 ;;-----------Unused setting-------------------

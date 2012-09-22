@@ -155,10 +155,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 			(font-spec :family "Microsoft Yahei" :size 15))))
 
   (when (string-match system-name "hfeng-t60p")
-    (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
+    (defconst my-git-path "c:/Program Files/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "Courier Std 12")
+    (set-face-attribute 'default nil :font "Consolas 12")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset

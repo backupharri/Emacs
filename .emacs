@@ -65,20 +65,44 @@
 (global-set-key [(meta ?/)]     'hippie-expand)
 (global-set-key "\C-x\C-m"      'execute-extended-command)
 (global-set-key "\C-c\C-m"      'execute-extended-command)
+(global-set-key (kbd "C-x C-y") 'kill-ring-save)
 
 
-;; C-c C-y to copy current line 
-(global-set-key (kbd "C-x C-y") 'copy-lines)
 
-(defun copy-lines(&optional arg)
+(defadvice kill-line (before check-position activate)
+  (if (member major-mode
+              '(emacs-lisp-mode scheme-mode lisp-mode
+                                c-mode c++-mode objc-mode js-mode
+                                latex-mode plain-tex-mode))
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1)))))
+ 
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single line instead."
+  (interactive (if mark-active (list (region-beginning) (region-end))
+                 (message "Copied line")
+                 (list (line-beginning-position)
+                       (line-beginning-position 2)))))
+ 
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+ 
+;; Copy line from point to the end, exclude the line break
+(defun qiang-copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
-  (save-excursion
-    (beginning-of-line)
-    (set-mark (point))
-    (next-line arg)
-    (kill-ring-save (mark) (point))
-    )
-  )
+  (kill-ring-save (point)
+                  (line-end-position))
+                  ;; (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+ 
+
 
 ;;Same behavior with BASH
 (global-set-key "\C-h"          'backward-delete-char-untabify)
@@ -352,8 +376,22 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (add-hook 'after-init-hook
 	  'session-initialize)
 
-;; I don't want to use org-mode's auto type
+;; I don't want to use org-mode's auto type subscript.
+;; only setting this is not enough, you also
+;; have to set '#+OPTIONS:^:{}' at the beginning
+;; of the org file, With this setting, 'a_b' will
+;; not be interpreted as a subscript, but 'a_{b}' will.
 (setq org-export-with-sub-superscripts nil)
+
+;; When you have made some personal keyboard shortcuts in
+;; emacs using global-set-key, both major modes and minor
+;; modes will override those if it uses the same keys.
+;; This is because major mode and minor mode's keymaps
+;; have priority over global keymaps.
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (define-key org-mode-map (kbd "C-,") 'set-mark-command)
+	    ))
 
 ; for mysql
 ;; show output on windows in buffer
@@ -396,19 +434,22 @@ auto-mode-alist))
 ;; If you don't want to restart emacs to make the setting work, you can
 ;; M-x load-file ~/.emacs
 
+
+
+;; C-c C-y to copy current line 
+;; (global-set-key (kbd "C-x C-y") 'copy-lines)
+
+;; (defun copy-lines(&optional arg)
+;;   (interactive "p")
+;;   (save-excursion
+;;     (beginning-of-line)
+;;     (set-mark (point))
+;;     (next-line arg)
+;;     (kill-ring-save (mark) (point))
+;;     )
+;;   )
+
 ;; If you want to list all the font available you can
 ;; M-x set-default-font
 ;; TAB to list fonts
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "8b9d07b01f2a9566969c2049faf982cab6a4b483dd43de7fd6a016bb861f7762" "191a1493fc7c3252ae949cc42cecc454900e3d4d1feb96f480cf9d1c40c093ee" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; END OF THE CONFIGURATION FILE

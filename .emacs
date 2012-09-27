@@ -134,7 +134,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   "if you want to use Song, you have to use SimSun instead of Yahei"
   (set-face-attribute
-   'default nil :font "Courier 12") 
+   'default nil :font "Consolas 12") 
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
               charset
@@ -154,6 +154,16 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 			charset
 			(font-spec :family "Microsoft Yahei" :size 15))))
 
+  (when (string-match system-name "hfeng-desktop")
+    (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
+    "CJK language also have to set for a second time, otherwise cjk words
+     can not show correctly"
+    (set-face-attribute 'default nil :font "Anonymous Pro 13")
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+			charset
+			(font-spec :family "Microsoft Yahei" :size 15))))
+  
   (when (string-match system-name "hfeng-t60p")
     (defconst my-git-path "c:/Program Files/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
@@ -394,7 +404,7 @@ auto-mode-alist))
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("8b9d07b01f2a9566969c2049faf982cab6a4b483dd43de7fd6a016bb861f7762" "191a1493fc7c3252ae949cc42cecc454900e3d4d1feb96f480cf9d1c40c093ee" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
+ '(custom-safe-themes (quote ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "8b9d07b01f2a9566969c2049faf982cab6a4b483dd43de7fd6a016bb861f7762" "191a1493fc7c3252ae949cc42cecc454900e3d4d1feb96f480cf9d1c40c093ee" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "4caf34995ab11fc19592114b792f8ac13b71b188daa52139b3f559a3dc900e84" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" default)))
  '(scroll-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

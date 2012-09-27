@@ -65,20 +65,44 @@
 (global-set-key [(meta ?/)]     'hippie-expand)
 (global-set-key "\C-x\C-m"      'execute-extended-command)
 (global-set-key "\C-c\C-m"      'execute-extended-command)
+(global-set-key (kbd "C-x C-y") 'kill-ring-save)
 
 
-;; C-c C-y to copy current line 
-(global-set-key (kbd "C-x C-y") 'copy-lines)
 
-(defun copy-lines(&optional arg)
+(defadvice kill-line (before check-position activate)
+  (if (member major-mode
+              '(emacs-lisp-mode scheme-mode lisp-mode
+                                c-mode c++-mode objc-mode js-mode
+                                latex-mode plain-tex-mode))
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1)))))
+ 
+(defadvice kill-ring-save (before slick-copy activate compile)
+  "When called interactively with no active region, copy a single line instead."
+  (interactive (if mark-active (list (region-beginning) (region-end))
+                 (message "Copied line")
+                 (list (line-beginning-position)
+                       (line-beginning-position 2)))))
+ 
+(defadvice kill-region (before slick-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+ 
+;; Copy line from point to the end, exclude the line break
+(defun qiang-copy-line (arg)
+  "Copy lines (as many as prefix argument) in the kill ring"
   (interactive "p")
-  (save-excursion
-    (beginning-of-line)
-    (set-mark (point))
-    (next-line arg)
-    (kill-ring-save (mark) (point))
-    )
-  )
+  (kill-ring-save (point)
+                  (line-end-position))
+                  ;; (line-beginning-position (+ 1 arg)))
+  (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
+ 
+
 
 ;;Same behavior with BASH
 (global-set-key "\C-h"          'backward-delete-char-untabify)
@@ -400,6 +424,21 @@ auto-mode-alist))
 ;; If you don't want to restart emacs to make the setting work, you can
 ;; M-x load-file ~/.emacs
 
+
+
+;; C-c C-y to copy current line 
+;; (global-set-key (kbd "C-x C-y") 'copy-lines)
+
+;; (defun copy-lines(&optional arg)
+;;   (interactive "p")
+;;   (save-excursion
+;;     (beginning-of-line)
+;;     (set-mark (point))
+;;     (next-line arg)
+;;     (kill-ring-save (mark) (point))
+;;     )
+;;   )
+
 ;; If you want to list all the font available you can
 ;; M-x set-default-font
 ;; TAB to list fonts
@@ -416,3 +455,6 @@ auto-mode-alist))
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+

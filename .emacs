@@ -349,6 +349,16 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;; not be interpreted as a subscript, but 'a_{b}' will.
 (setq org-export-with-sub-superscripts nil)
 
+;; When you have made some personal keyboard shortcuts in
+;; emacs using global-set-key, both major modes and minor
+;; modes will override those if it uses the same keys.
+;; This is because major mode and minor mode's keymaps
+;; have priority over global keymaps.
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (define-key org-mode-map (kbd "C-,") 'set-mark-command)
+	    ))
+
 ; for mysql
 ;; show output on windows in buffer
 (setq sql-mysql-options '("-C" "-t" "-f" "-n"))

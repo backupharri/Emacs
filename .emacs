@@ -422,11 +422,45 @@ auto-mode-alist))
 
 
 
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+               ("shell" (mode . shell-mode))
+	       ("cc-c" (or
+			(mode . c-mode)
+			(mode . c++-mode)))
+               ("java" (mode . java-mode))
+               ("org" (mode . org-mode))
+	       ("emacs" (or
+			 (name . "^\\.emacs$")
+			 (name . "^\\*scratch\\*$")))
+               ("dired" (mode . dired-mode))
+               ("xml" (mode . nxml-mode))))))    
+
+(setq ibuffer-show-empty-filter-groups nil)
+
+(add-hook 'ibuffer-mode-hook 
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
+
+
 
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)
 
-;;80 is the column limit
+;;80 is the column limit;; (setq ibuffer-saved-filter-groups
+;;       (quote (("default"
+;;                ("dired" (mode . dired-mode))
+;;                ("java" (mode . java-mode))
+;;                ("org" (mode . org-mode))
+;;                ("sql" (mode . sql-mode))
+;;                ("xml" (mode . nxml-mode))))))    
+
+;; (setq ibuffer-show-empty-filter-groups nil)
+
+;; (add-hook 'ibuffer-mode-hook 
+;;  (lambda () 
+;;   (ibuffer-filter-by-filename "."))) ;; to show only dired and files buffers
+
 ;; (setq default-fill-column 80)
 ;; (setq-default auto-fill-function 'do-auto-fill)
 
@@ -453,3 +487,16 @@ auto-mode-alist))
 ;; M-x set-default-font
 ;; TAB to list fonts
 ;; END OF THE CONFIGURATION FILE
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default)))
+ '(scroll-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

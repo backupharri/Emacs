@@ -221,21 +221,30 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ;; example of setting env var named “path”,
   ;; by appending a new path to existing path
   (setenv "PATH"
-      (concat
-       my-emacs-unix-gnuwin32 ";"
-       my-emacs-unix-util ";"
-       my-emacs-unix-command ";"
-       my-git-path ";"
-       my-python-path ";"
-       my-python-script-path ";"
-       (getenv "PATH")
-       ))
+	  (concat
+	   my-emacs-unix-gnuwin32 ";"
+	   my-emacs-unix-util ";"
+	   my-emacs-unix-command ";"
+	   my-git-path ";"
+	   my-python-path ";"
+	   my-python-script-path ";"
+	   (getenv "PATH")
+	   ))
   (setenv "HOME" my-emacs-path)
 
-  (setq exec-path
-    '(
-      my-emacs-unix-util
-      ))
+  (let (
+        (mypaths
+         '(
+	   my-emacs-unix-gnuwin32
+	   my-emacs-unix-util 
+	   my-emacs-unix-command
+           my-python-path 
+	   my-git-path
+           ) )
+        )
+    (setq exec-path (append mypaths (list "." exec-directory)) )
+    ) 
+  
   ;Maximum Windows
     (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
 )
@@ -254,19 +263,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
               charset
               (font-spec :family "华文宋体" :size 16)))
 
-  ;; (setenv "PATH"
-  ;; 	  (concat
-  ;; 	   "/usr/local/bin" ":" ;; /usr/local/bin is for homebrew
-  ;; 	   "/usr/bin:/bin"  ":"
-  ;; 	   "/usr/sbin:/sbin" ":"
-  ;; 	   (getenv "PATH")
-  ;; 	   ))
-  ;; (setq exec-path
-  ;;   '(
-  ;;     "/usr/local/bin"
-  ;;     "/usr/bin"
-  ;;     ))
-  
   (let (
         (mypaths
          '(
@@ -423,20 +419,20 @@ auto-mode-alist))
 
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("shell" (mode . shell-mode))
+               ("shell"  (mode . shell-mode))
                ("python" (mode . python-mode))
-               ("ruby" (mode . ruby-mode))
-               ("html" (mode . html-mode))
-	       ("cc-c" (or
-			(mode . c-mode)
-			(mode . c++-mode)))
-               ("java" (mode . java-mode))
-               ("org" (mode . org-mode))
-	       ("emacs" (or
-			 (name . "^\\.emacs$")
-			 (name . "^\\*scratch\\*$")))
-               ("dired" (mode . dired-mode))
-               ("xml" (mode . nxml-mode))))))    
+               ("ruby"   (mode . ruby-mode))
+               ("html"   (mode . html-mode))
+	       ("cc-c"   (or
+			  (mode . c-mode)
+			  (mode . c++-mode)))
+               ("java"   (mode . java-mode))
+               ("org"    (mode . org-mode))
+	       ("emacs"  (or
+			  (name . "^\\.emacs$")
+			  (name . "^\\*scratch\\*$")))
+               ("dired"  (mode . dired-mode))
+               ("xml"    (mode . nxml-mode))))))    
 
 (setq ibuffer-show-empty-filter-groups nil)
 
@@ -488,13 +484,18 @@ auto-mode-alist))
 ;; If you want to list all the font available you can
 ;; M-x set-default-font
 ;; TAB to list fonts
+;;-----------------------------------------------------------------------;;
+;;-----------------------------------------------------------------------;;
 ;; END OF THE CONFIGURATION FILE
+;;-----------------------------------------------------------------------;;
+;;-----------------------------------------------------------------------;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default)))
+ '(custom-safe-themes (quote ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default)))
  '(scroll-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

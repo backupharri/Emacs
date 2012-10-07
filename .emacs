@@ -192,7 +192,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (defconst my-git-path "c:/Program Files/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "Consolas 12")
+    (set-face-attribute 'default nil :font "Anonymous Pro 12")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
@@ -234,9 +234,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   (setq exec-path
     '(
-      "C:/python26/"
-      "C:/python27/"
+      my-emacs-unix-util
       ))
+  
   ;Maximum Windows
     (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
 )
@@ -422,11 +422,48 @@ auto-mode-alist))
 
 
 
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+               ("shell" (mode . shell-mode))
+               ("python" (mode . python-mode))
+               ("ruby" (mode . ruby-mode))
+               ("html" (mode . html-mode))
+	       ("cc-c" (or
+			(mode . c-mode)
+			(mode . c++-mode)))
+               ("java" (mode . java-mode))
+               ("org" (mode . org-mode))
+	       ("emacs" (or
+			 (name . "^\\.emacs$")
+			 (name . "^\\*scratch\\*$")))
+               ("dired" (mode . dired-mode))
+               ("xml" (mode . nxml-mode))))))    
+
+(setq ibuffer-show-empty-filter-groups nil)
+
+(add-hook 'ibuffer-mode-hook 
+	  (lambda ()
+	    (ibuffer-switch-to-saved-filter-groups "default")))
+
+
 
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)
 
-;;80 is the column limit
+;;80 is the column limit;; (setq ibuffer-saved-filter-groups
+;;       (quote (("default"
+;;                ("dired" (mode . dired-mode))
+;;                ("java" (mode . java-mode))
+;;                ("org" (mode . org-mode))
+;;                ("sql" (mode . sql-mode))
+;;                ("xml" (mode . nxml-mode))))))    
+
+;; (setq ibuffer-show-empty-filter-groups nil)
+
+;; (add-hook 'ibuffer-mode-hook 
+;;  (lambda () 
+;;   (ibuffer-filter-by-filename "."))) ;; to show only dired and files buffers
+
 ;; (setq default-fill-column 80)
 ;; (setq-default auto-fill-function 'do-auto-fill)
 
@@ -453,16 +490,3 @@ auto-mode-alist))
 ;; M-x set-default-font
 ;; TAB to list fonts
 ;; END OF THE CONFIGURATION FILE
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("ed5887d583126eb36d7108f72d595829603849689142284b3c4a22050ddd7df9" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

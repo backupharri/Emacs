@@ -182,7 +182,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "Anonymous Pro 13")
+    (set-face-attribute 'default nil :font "Anonymous Pro 15")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
@@ -453,3 +453,16 @@ auto-mode-alist))
 ;; M-x set-default-font
 ;; TAB to list fonts
 ;; END OF THE CONFIGURATION FILE
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("ed5887d583126eb36d7108f72d595829603849689142284b3c4a22050ddd7df9" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" default)))
+ '(scroll-bar-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

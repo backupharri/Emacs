@@ -56,7 +56,7 @@
       mac-option-modifier 'none)
 
 ;;=====Key Binding=======;;
-(global-set-key "\C-q"          'cua-mode)
+(global-set-key "\C-c\C-u"      'cua-mode)
 (global-set-key "\C-w"          'backward-kill-word)
 (global-set-key "\C-x\C-k"      'kill-region)
 (global-set-key "\C-o"          'other-window)
@@ -66,7 +66,6 @@
 (global-set-key "\C-x\C-m"      'execute-extended-command)
 (global-set-key "\C-c\C-m"      'execute-extended-command)
 (global-set-key (kbd "C-x C-y") 'kill-ring-save)
-
 
 
 (defadvice kill-line (before check-position activate)
@@ -102,7 +101,6 @@
                   ;; (line-beginning-position (+ 1 arg)))
   (message "%d line%s copied" arg (if (= 1 arg) "" "s")))
  
-
 
 ;;Same behavior with BASH
 (global-set-key "\C-h"          'backward-delete-char-untabify)
@@ -148,8 +146,6 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
        (set-frame-parameter (selected-frame) 'alpha (list a ab))
        (add-to-list 'default-frame-alist (cons 'alpha (list a ab)))
        ) (car h) (car (cdr h)))
-
-
     (setq alpha-list (cdr (append alpha-list (list h))))
     )
 )
@@ -441,6 +437,15 @@ auto-mode-alist))
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 
 
+;;-----------Usage Tips------------------
+
+;; If you don't want to restart emacs to make the setting work, you can
+;; M-x load-file ~/.emacs
+
+;; If you want to list all the font available you can
+;; M-x set-default-font
+;; TAB to list fonts
+
 
 ;;-----------Unused setting-------------------
 ;(desktop-save-mode 1)
@@ -463,10 +468,6 @@ auto-mode-alist))
 ;; (setq-default auto-fill-function 'do-auto-fill)
 
 
-;; If you don't want to restart emacs to make the setting work, you can
-;; M-x load-file ~/.emacs
-
-
 
 ;; C-c C-y to copy current line 
 ;; (global-set-key (kbd "C-x C-y") 'copy-lines)
@@ -480,10 +481,6 @@ auto-mode-alist))
 ;;     (kill-ring-save (mark) (point))
 ;;     )
 ;;   )
-
-;; If you want to list all the font available you can
-;; M-x set-default-font
-;; TAB to list fonts
 ;;-----------------------------------------------------------------------;;
 ;;-----------------------------------------------------------------------;;
 ;; END OF THE CONFIGURATION FILE

@@ -330,6 +330,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;Open Recent File History
 (recentf-mode 1)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
+(setq recentf-max-menu-items 30)
 
 ;;python-mode
 (require 'python-mode)

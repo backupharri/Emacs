@@ -178,11 +178,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "Anonymous Pro 13")
+    (set-face-attribute 'default nil :font "Anonymous Pro 15")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
-			(font-spec :family "Microsoft Yahei" :size 15))))
+			(font-spec :family "Microsoft Yahei" :size 17))))
   
   (when (string-match system-name "hfeng-t60p")
     (defconst my-git-path "c:/Program Files/Git/bin/")
@@ -384,6 +384,17 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	  (lambda()
 	    (define-key org-mode-map (kbd "C-,") 'set-mark-command)
 	    ))
+
+(defun yas/org-very-safe-expand ()
+  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (make-variable-buffer-local 'yas/trigger-key)
+	    (setq yas/trigger-key [tab])
+	    (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+	    (define-key yas/keymap [tab] 'yas/next-field)))
+
 
 ; for mysql
 ;; show output on windows in buffer

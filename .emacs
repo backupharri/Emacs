@@ -226,27 +226,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   my-python-script-path ";"
 	   (getenv "PATH")
 	   ))
+  
   (setenv "HOME" my-emacs-path)
-
-  ;; (let (
-  ;;       (mypaths
-  ;;        '(
-  ;; 	   my-emacs-unix-gnuwin32
-  ;; 	   my-emacs-unix-util 
-  ;; 	   my-emacs-unix-command
-  ;;          my-python-path 
-  ;; 	   my-git-path
-  ;;          ) )
-  ;;       )
-  ;;   (setq exec-path (append mypaths (list "." exec-directory)) )
-  ;;   )
-
-
- (setq exec-path
-    '(
-      "C:/python26/"
-      "C:/Program Files (x86)/Git/bin"
-      ))
 
   ;Maximum Windows
     (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
@@ -279,7 +260,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
         )
 
     (setenv "PATH" (mapconcat 'identity mypaths ":") )
-    (setq exec-path (append mypaths (list "." exec-directory)) )
+    ;; (setq exec-path (append mypaths (list "." exec-directory)) )
     ) 
 
   (setq default-frame-alist '((height . 40)
@@ -312,6 +293,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 			      (width . 150) (menu-bar-lines . 20) 
 			      (tool-bar-lines . 0)))
   )
+
+
+;; This setting will work for all three platforms
+(setq exec-path (split-string (getenv "PATH") path-separator))
+
 
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")
@@ -497,6 +483,28 @@ auto-mode-alist))
 
 
 
+;;  (let (
+;;	  (mypaths
+;;	   '(
+;;	   my-emacs-unix-gnuwin32
+;;	   my-emacs-unix-util 
+;;	   my-emacs-unix-command
+;;	     my-python-path 
+;;	   my-git-path
+;;	     ) )
+;;	  )
+;;    (setq exec-path (append mypaths (list "." exec-directory)) )
+;;    )
+
+
+;; (setq exec-path
+;;    '(
+;;	;; "C:/python26/"
+;;	"C:/Program Files (x86)/Git/bin"
+;;	))
+
+
+
 ;; C-c C-y to copy current line 
 ;; (global-set-key (kbd "C-x C-y") 'copy-lines)
 
@@ -515,16 +523,3 @@ auto-mode-alist))
 ;;-----------------------------------------------------------------------;;
 ;;-----------------------------------------------------------------------;;
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "a99fb53a1d22ce353cab8db2fe59353781c13a4e1d90455f54f7e60c061bc9f4" "58fb295e041032fd7a61074ca134259dfdef557ca67d37c4240dbfbb11b8fcc7" default)))
- '(scroll-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

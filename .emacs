@@ -228,19 +228,26 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 	   ))
   (setenv "HOME" my-emacs-path)
 
-  (let (
-        (mypaths
-         '(
-	   my-emacs-unix-gnuwin32
-	   my-emacs-unix-util 
-	   my-emacs-unix-command
-           my-python-path 
-	   my-git-path
-           ) )
-        )
-    (setq exec-path (append mypaths (list "." exec-directory)) )
-    ) 
-  
+  ;; (let (
+  ;;       (mypaths
+  ;;        '(
+  ;; 	   my-emacs-unix-gnuwin32
+  ;; 	   my-emacs-unix-util 
+  ;; 	   my-emacs-unix-command
+  ;;          my-python-path 
+  ;; 	   my-git-path
+  ;;          ) )
+  ;;       )
+  ;;   (setq exec-path (append mypaths (list "." exec-directory)) )
+  ;;   )
+
+
+ (setq exec-path
+    '(
+      "C:/python26/"
+      "C:/Program Files (x86)/Git/bin"
+      ))
+
   ;Maximum Windows
     (run-with-idle-timer 1 nil 'w32-send-sys-command 61488)
 )

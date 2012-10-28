@@ -523,3 +523,16 @@ auto-mode-alist))
 ;;-----------------------------------------------------------------------;;
 ;;-----------------------------------------------------------------------;;
 
+(setq pylookup-dir "/Users/harrifeng/tmp/pylookup")
+(add-to-list 'load-path pylookup-dir)
+
+(eval-when-compile (require 'pylookup))
+
+(setq pylookup-program(concat pylookup-dir "/pylookup.py"))
+(setq pylookup-db-file(concat pylookup-dir "/pylookup.db"))
+
+(setq w3m-dir "/Users/harrifeng/tmp/w3m")
+(add-to-list 'load-path w3m-dir)
+
+(require 'w3m-load)
+(setq browse-url-browser-function 'w3m-browse-url)

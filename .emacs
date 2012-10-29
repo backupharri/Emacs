@@ -322,11 +322,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
 ;;UTF-8 Setting
 (setq current-language-environment "UTF-8")
-(setq default-input-method "chinese-py")
+;; (setq default-input-method "chinese-py")
 (setq locale-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
 ;;packages server:marmalade
@@ -524,6 +523,7 @@ auto-mode-alist))
 ;;	"C:/Program Files (x86)/Git/bin"
 ;;	))
 
+;; (set-selection-coding-system 'utf-8)  Bad Boy! It will make the encoding wrong
 
 
 ;; C-c C-y to copy current line 

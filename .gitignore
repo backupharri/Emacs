@@ -16,5 +16,6 @@
 .emacs.d/elpa/archives/
 .emacs.d/tramp
 .bash_history
+.w3m
 .gem/
 \.DS_Store

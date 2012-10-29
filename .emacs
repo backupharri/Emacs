@@ -463,7 +463,7 @@ auto-mode-alist))
 ;; Setting this will make it possible to m-x shell easily on tramp
 ;; you have to use "cd  c:/" other than "cd /c", 'cause that way
 ;; the shell does not know how to perform auto complete
-(setq explicit-shell-file-name "sh")
+;; (setq explicit-shell-file-name "sh")
 (setq shell-file-name (concat exec-directory "cmdproxy.exe"))
 
 

@@ -189,7 +189,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
     (defconst my-git-path "c:/Program Files (x86)/Git/bin/")
     "CJK language also have to set for a second time, otherwise cjk words
      can not show correctly"
-    (set-face-attribute 'default nil :font "Anonymous Pro 13")
+    (set-face-attribute 'default nil :font "Consolas 13")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
@@ -338,7 +338,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'sanityinc-tomorrow-day t)
 
 ;;Open Recent File History
 (recentf-mode 1)
@@ -436,8 +436,6 @@ auto-mode-alist))
 (setq c-default-style "stroustrup"
       c-basic-offset 4)
 
-
-
 (setq ibuffer-saved-filter-groups
       (quote (("default"
                ("shell"  (mode . shell-mode))
@@ -460,6 +458,13 @@ auto-mode-alist))
 (add-hook 'ibuffer-mode-hook 
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
+
+
+;; Setting this will make it possible to m-x shell easily on tramp
+;; you have to use "cd  c:/" other than "cd /c", 'cause that way
+;; the shell does not know how to perform auto complete
+(setq explicit-shell-file-name "sh")
+(setq shell-file-name (concat exec-directory "cmdproxy.exe"))
 
 
 ;;-----------Usage Tips------------------
@@ -543,4 +548,5 @@ auto-mode-alist))
 ;; END OF THE CONFIGURATION FILE
 ;;-----------------------------------------------------------------------;;
 ;;-----------------------------------------------------------------------;;
+
 

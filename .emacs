@@ -338,7 +338,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 ;;=====Advanced part, need additional plugins=======;;
 
 ;use only for emacs24
-(load-theme 'sanityinc-tomorrow-day t)
+;; (load-theme 'sanityinc-tomorrow-day t)
+(load-theme 'sanityinc-tomorrow-eighties t)
 
 ;;Open Recent File History
 (recentf-mode 1)
@@ -466,6 +467,19 @@ auto-mode-alist))
 (setq explicit-shell-file-name "sh")
 (setq shell-file-name (concat exec-directory "cmdproxy.exe"))
 
+
+;; add pylookup to your loadpath, ex) ~/.emacs.d/pylookup
+(setq pylookup-dir "c:/tmp/pylookup")
+(add-to-list 'load-path pylookup-dir)
+
+;; load pylookup when compile time
+(eval-when-compile (require 'pylookup))
+
+;; set executable file and db file
+(setq pylookup-program (concat pylookup-dir "/pylookup.bat"))
+(setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
+
+      
 
 ;;-----------Usage Tips------------------
 

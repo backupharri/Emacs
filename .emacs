@@ -438,7 +438,9 @@ auto-mode-alist))
 
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("shell"  (mode . shell-mode))
+               ("shell"  (or
+		         (mode . shell-mode)
+			 (mode . eshell-mode)))
                ("python" (mode . python-mode))
                ("ruby"   (mode . ruby-mode))
                ("html"   (mode . html-mode))
@@ -464,8 +466,38 @@ auto-mode-alist))
 ;; you have to use "cd  c:/" other than "cd /c", 'cause that way
 ;; the shell does not know how to perform auto complete
 ;; (setq explicit-shell-file-name "sh")
+;; M-! to trigger the following
 (setq shell-file-name (concat exec-directory "cmdproxy.exe"))
 
+
+(defconst my-emacs-el-get-path
+  (concat
+   my-emacs-path
+   ".emacs.d/el-get/el-get"))
+
+
+(add-to-list 'load-path my-emacs-el-get-path)
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+
+(el-get 'sync)
+
+;; add pylookup to your loadpath, ex) ~/.emacs.d/pylookup
+
+;; (setq pylookup-dir "c:/tmp/pylookup")
+;; (add-to-list 'load-path pylookup-dir)
+;; ;; load pylookup when compile time
+;; (eval-when-compile (require 'pylookup))
+
+;; ;; set executable file and db file
+;; (setq pylookup-program (concat pylookup-dir "/pylookup.bat"))
+;; (setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
 
 ;;-----------Usage Tips------------------
 

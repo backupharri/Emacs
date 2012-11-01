@@ -459,13 +459,48 @@ auto-mode-alist))
 	  (lambda ()
 	    (ibuffer-switch-to-saved-filter-groups "default")))
 
+(defconst my-el-get-path
+  (concat
+   my-emacs-path
+   ".emacs.d/el-get/el-get"))
+
+(add-to-list 'load-path my-el-get-path)
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(el-get 'sync)
+
+
+;; (defconst my-pylookup-path
+;;   (concat
+;;    my-emacs-path
+;;    ".emacs.d/el-get/pylookup"))
+
+
+(setq pylookup-dir "c:/gitbox/Emacs/.emacs.d/el-get/pylookup")
+
+;; load pylookup when compile time  
+;(eval-when-compile (require 'pylookup))
+
+;; set executable file and db file
+(setq pylookup-program (concat pylookup-dir "/pylookup.bat"))
+(setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
+
 
 ;; Setting this will make it possible to m-x shell easily on tramp
 ;; you have to use "cd  c:/" other than "cd /c", 'cause that way
 ;; the shell does not know how to perform auto complete
 ;; (setq explicit-shell-file-name "sh")
 (setq shell-file-name (concat exec-directory "cmdproxy.exe"))
-
+;; Use emacs-w3m to browse links inside emacs
+;; (setq browse-url-browser-function 'w3m-browse-url)
+ (setq browse-url-browser-function 'w3m-browse-url)
+ (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 
 ;;-----------Usage Tips------------------
 
